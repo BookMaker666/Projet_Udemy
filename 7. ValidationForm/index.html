@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container"></div>
+
+    <div class="bloc_form">
+        <h2>Inscrivez-vous.</h2>
+
+        <form>
+        <div class="form_groupe">
+            <label for="user">Nom Utilisateur</label>
+            <input type="text" name="user" id="user" placeholder="Entrez un nom" maxlength="24">
+            <img src="ressources/error.svg" alt="erreur">
+            <span class="form_user"></span>
+        </div>
+        <div class="form_groupe">
+            <label for="mail">Entrez votre mail</label>
+            <input type="mail" name="mail" id="mail" placeholder="Entrez un mail">
+            <img src="ressources/error.svg" alt="erreur">
+            <span class="form_mail"></span>
+        </div>
+        <div class="form_groupe">
+            <label for="mdp">Mot de passe</label>
+            <input type="password" name="mdp" id="mdp" placeholder="Entrez un mot de passe">
+            <img src="ressources/error.svg" alt="erreur">
+            <span class="form_mdp"></span>
+        </div>
+        <div class="form_groupe">
+            <label for="confirm_mdp">Confirmer mot de passe</label>
+            <input type="password" name="confirm_mdp" id="confirm_mdp" placeholder="Confirmez le Mot de passe">
+            <img src="ressources/error.svg" alt="erreur">
+            <span class="form_confirm_mdp"></span>
+        </div>
+        </form>
+        
+        <div class="button">
+            <button type="submit"> Connexion</button>
+        </div>
+    </div>
+    
+</div>
+
+    <script src="app.js"></script>
+</body>
+</html>

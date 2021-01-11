@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz JS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="container">
+    <h2> Quizz Culture général</h2>
+    
+    <div class="blocQuizz">
+        <h4>Qui est l'empereur de France le 2 décembre 1804?</h4>
+            <div>
+              <input type="radio" value="clovis" name="empereur" id="clovis">
+              <label for="clovis">Clovis</label>
+            </div>
+            <div>
+                <input type="radio" value="abrahamLincoln" name="empereur" id="abrahamLincoln">
+                <label for="abrahamLincoln">Abraham Lincoln</label>
+            </div>
+            <div>
+                <input type="radio" value="napoleonBonaparte" name="empereur" id="napoleonBonaparte">
+                <label for="napoleonBonaparte">Napoleon Bonaparte</label>
+            </div>  
+    </div>
+
+    <div class="blocQuizz">
+        <h4>Quelle est la date d'indépendance des États-Unis?</h4>
+        <div>
+            <input type="radio" value="juillet" name="independance" id="juillet">
+            <label for="juillet">4 juillet 1776</label>
+        </div>
+        <div>
+            <input type="radio" value="avril" name="independance" id="avril">
+            <label for="avril">18 avril 1856</label>
+        </div>
+        <div>
+            <input type="radio" value="juin" name="independance" id="juin">
+            <label for="juin">30 juin 1925</label>
+        </div>  
+    </div>
+
+    <div class="blocQuizz">
+        <h4>La chute de l'empire Romain se situe en ?</h4>
+        <div>
+            <input type="radio" value="15ApJC" name="romain" id="15ApJC">
+            <label for="15ApJC">15 ap. J.-C.</label>
+        </div>
+        <div>
+            <input type="radio" value="395ApJC" name="romain" id="395ApJC">
+            <label for="395ApJC">395 ap. J.-C.</label>
+        </div>
+        <div>
+            <input type="radio" value="740AvJC" name="romain" id="740AvJC">
+            <label for="740AvJC">-740 av. J.-C.</label>
+        </div>  
+    </div>
+
+    <div class="blocQuizz">
+        <h4>Quelle est la capitale de la Slovénie?</h4>
+        <div>
+            <input type="radio" value="Ljubijana" name="slovenie" id="Ljubijana">
+            <label for="Ljubijana">Ljubijana</label>
+        </div>
+        <div>
+            <input type="radio" value="Belgrade" name="slovenie" id="Belgrade">
+            <label for="Belgrade">Belgrade</label>
+        </div>
+        <div>
+            <input type="radio" value="Bratislava" name="slovenie" id="Bratislava">
+            <label for="Bratislava">Bratislava</label>
+        </div>  
+    </div>
+
+    <div class="blocQuizz">
+        <h4>Combien d'habitants compte l'Irlande en 2020?</h4>
+        <div>
+            <input type="radio" value="1365M" name="irlande" id="1365M"> 
+            <label for="1365M">1,365 Million</label>
+        </div>
+        <div>
+            <input type="radio" value="21M" name="irlande" id="21M">
+            <label for="21M">21 Millions</label>
+        </div>
+        <div>
+            <input type="radio" value="4.9M" name="irlande" id="4.9M">
+            <label for="4.9M">4,9 Millions</label>
+        </div>  
+    </div>
+
+    <div id="boutonValider">
+        <button type="submit"><strong> Validez vos choix ! </strong></button>
+    </div>
+    <div class="resultat">
+        <h4 id="h4Res">Cliquez sur valider pour voir les résultats</h4>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

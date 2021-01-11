@@ -1,0 +1,61 @@
+body
+{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; 
+    background-color: #333;;
+    justify-content: center;
+    align-items: center;
+}
+h2
+{
+    text-align: center;
+}
+.bloc_form
+{
+    background-color: white;
+    padding: 20px;
+    margin-top: 30px; 
+    border-radius: 3px; 
+}
+.form_groupe
+{
+    position: relative;    
+}
+label
+{
+    position: absolute;
+    margin-top: 10px;
+}
+input
+{
+    margin-top: 30px;
+    width: 500px;
+    height: 30px;
+    background: rgb(226,226,226);
+}
+span
+{
+    display: block;
+    color: red;
+}
+.button
+{ 
+    margin-top: 15px;
+    text-align: center;
+}
+button
+{
+    background: rgb(250,165,9);
+    width: 90%;
+    height: 50px;
+}
+img
+{
+    position: absolute;
+    top:55%;
+    margin-left: -25px;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 10px;
+}
