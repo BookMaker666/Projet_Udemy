@@ -1,67 +1,95 @@
-const clefApi ='830ecbdb7582643995b6513685689a6b';
-let resultatAPI;
+import tabJoursEnOrdre from './Utilitaire/gestionTemps.js';
+
+// console.log("DEPUIS MAIN JS:" + tabJoursEnOrdre);
+
+const CLEFAPI = '8e9391f167c17b3253b145b2a036ffd4';
+let resultatsAPI;
 
 const temps = document.querySelector('.temps');
 const temperature = document.querySelector('.temperature');
 const localisation = document.querySelector('.localisation');
 const heure = document.querySelectorAll('.heure-nom-prevision');
 const tempPourH = document.querySelectorAll('.heure-prevision-valeur');
+const joursDiv = document.querySelectorAll('.jour-prevision-nom');
+const tempJoursDiv = document.querySelectorAll('.jour-prevision-temp');
+const imgIcone = document.querySelector('.logo-meteo');
+const chargementContainer = document.querySelector('.overlay-icone-chargement');
 
-/*Vérifie si notre navigateur à l'option géolocalisation, si oui, on prends la longitude et
-la latitude que l'on passe dans une méthode afin de pouvoir obtenir les conditions climatiques
-Si non, on demande à l'utilisateur d'activer la géolocalisation*/
-if(navigator.geolocation){
+if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
 
-        console.log(position);
+        // console.log(position);
         let long = position.coords.longitude;
         let lat = position.coords.latitude;
-        AppelAPI(long, lat);
+        AppelAPI(long,lat);
+
     }, () => {
-        alert(`Vous avez refusé la géolocalisation, l'application ne peur pas fonctionner, veuillez l'activer`)
+        alert(`Vous avez refusé la géolocalisation, l'application ne peur pas fonctionner, veuillez l'activer.!`)
     })
 }
-/*fonction servant à récupérer les condtions climatiques*/
-function AppelAPI(long, lat)
-{
-    /*méthode permettant de faire une requête http afin d'obtenir les données de l'API,
-    retournant une "promesse"*/
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely&units=metric&lang=fr&appid=${clefApi}`)
-    .then((reponse) =>{
-        /*la "promesse" nous retourne une "réponse", mais cette "réponse" ne peut pas être lue,
-        on la formate donc en 'json' afin de pouvoir traiter les données dans une autre "promesse"*/
+
+function AppelAPI(long, lat) {
+
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely&units=metric&lang=fr&appid=${CLEFAPI}`)
+    .then((reponse) => {
         return reponse.json();
     })
     .then((data) => {
-        /*promesse qui a récupéré les données json sur lesquels nous pouvons travailler*/
-        resultatAPI = data;
-        console.log(resultatAPI);
+        // console.log(data);
 
-        temps.innerText = resultatAPI.current.weather[0].description;
-        temperature.innerText = `${Math.trunc(resultatAPI.current.temp)}°`;
-        localisation.innerText = resultatAPI.timezone;
+        resultatsAPI = data;
 
-        /* récupération de l'heure actuelle*/
+        temps.innerText = resultatsAPI.current.weather[0].description;
+        temperature.innerText = `${Math.trunc(resultatsAPI.current.temp)}°`
+        localisation.innerText = resultatsAPI.timezone;
+
+
+        // les heures, par tranche de trois, avec leur temperature.
+
         let heureActuelle = new Date().getHours();
-        
-        /*boucle permettant d'afficher des heures par tranches de 3h*/
-        for(let i = 0; i < heure.length; i++)
-        {
+
+        for(let i = 0; i < heure.length; i++) {
+
             let heureIncr = heureActuelle + i * 3;
-            if(heureIncr > 24){
-                heure[i].innerText = `${heureIncr -24} h`;
+
+            if(heureIncr > 24) {
+                heure[i].innerText = `${heureIncr - 24} h`;
             } else if(heureIncr === 24) {
-                heure[i].innerText = '00 h';
+                heure[i].innerText = "00 h"
             } else {
                 heure[i].innerText = `${heureIncr} h`;
             }
+
         }
 
-        // boucle affichant la temp toutes les 3h
-        for(let j = 0; j < tempPourH.length; j++)
-        {
-            tempPourH[j].innerText =`${Math.trunc(resultatAPI.hourly[j *3].temp)}°`;
+        // temp pour 3h
+        for(let j = 0; j < tempPourH.length; j++) {
+            tempPourH[j].innerText = `${Math.trunc(resultatsAPI.hourly[j * 3].temp)}°`
         }
+
+
+        // trois premieres lettres des jours 
+
+        for(let k = 0; k < tabJoursEnOrdre.length; k++) {
+            joursDiv[k].innerText = tabJoursEnOrdre[k].slice(0,3);
+        }
+
+
+        // Temp par jour
+        for(let m = 0; m < 7; m++){
+            tempJoursDiv[m].innerText = `${Math.trunc(resultatsAPI.daily[m + 1].temp.day)}°`
+        }
+
+        // Icone dynamique 
+         if(heureActuelle >= 6 && heureActuelle < 21) {
+             imgIcone.src = `ressources/jour/${resultatsAPI.current.weather[0].icon}.svg`
+         } else  {
+            imgIcone.src = `ressources/nuit/${resultatsAPI.current.weather[0].icon}.svg`
+         }
+
+
+         chargementContainer.classList.add('disparition');
 
     })
+
 }
